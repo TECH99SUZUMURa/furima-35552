@@ -43,4 +43,4 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :prototype
+- belongs_to :item
