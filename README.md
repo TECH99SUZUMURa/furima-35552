@@ -19,34 +19,37 @@
  
 ## items テーブル
 
-| Column   | Type         | Options                        |
-| -------- | ------------ |------------------------------- |
-| name     | string       | null: false                    |
-| price    | integer      | null: false                    |
-| text     | text         | null: false                    |
-| user     | references   | null: false, foreign_key: true |
-| purchase | references   | null: false, foreign_key: true |
+| Column                        | Type         | Options                        |
+| ----------------------------- | ------------ |------------------------------- |
+| item_name                     | string       | null: false                    |
+| price                         | integer      | null: false                    |
+| text                          | text         | null: false                    |
+| category_id                   | integer      | null: false                    |
+| condition_id                  | integer      | null: false                    |
+| shipping_charge_id            | integer      | null: false                    |
+| prefecture_id                 | integer      | null: false                    |
+| estimated_shipping_date_id    | integer      | null: false                    |
+| text                          | text         | null: false                    |
+| user                          | references   | null: false, foreign_key: true |
+| purchase                      | references   | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - has_one :purchase
-
-#### Active_Hash
-- category
-- prefecture
-- condition
-- estimated_shipping_date
+- belongs_to_active_hash :category
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_charge
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :estimated_shipping_date
 
 ## purchases テーブル
 
-| Column                 | Type         | Options                        |
-| ---------------------- | ------------ | ------------------------------ |
-| card_num               | integer      | null: false                    |
-| experition_date        | string       | null: false                    |
-| security_code          | string       | null: false                    |
-| user                   | references   | null: false, foreign_key: true |
-| item                   | references   | null: false, foreign_key: true |
-| address                | references   | null: false, foreign_key: true |
+| Column                | Type         | Options                        |
+| --------------------- | ------------ | ------------------------------ |
+| card_token            | string       | null: false                    |
+| customer_token        | string       | null: false                    |
+| user                  | references   | null: false, foreign_key: true |
+| item                  | references   | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -66,6 +69,4 @@
 
 ### Association
 - belongs_to :purchase
-
-#### Active_Hash
-- prefecture
+- belongs_to_active_hash :prefecture
