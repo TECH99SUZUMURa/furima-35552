@@ -14,19 +14,16 @@ class User < ApplicationRecord
     validates :birth_day
   end
 
-  # VALID_NAME_REGEX = Regexp.new(/\A[ぁ-んァ-ヶ一-龥々ー]\z/)
-  # validates :first_name, format: { with: VALID_NAME_REGEX }
-  # validates :last_name, format: { with: VALID_NAME_REGEX }
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
+  validates_format_of :first_name, with: VALID_NAME_REGEX
+  validates_format_of :last_name, with: VALID_NAME_REGEX
 
-  #VALID_NAME_KANA_REGEX = Regexp.new(/\A[ァ-ヶー]\z/)
-  #validates :first_name_kana, format: { with: VALID_NAME_KANA_REGEX }
-  #validates :last_name_kana, format: { with: VALID_NAME_KANA_REGEX }
-
-  # VALID_EMAIL_REGEX = Regexp.new(/\A[\w+\-.]+@[a-z\d\-.]+.[a-z]+\z/i)
-  # validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  VALID_NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/
+  validates_format_of :first_name_kana, with: VALID_NAME_KANA_REGEX
+  validates_format_of :last_name_kana, with: VALID_NAME_KANA_REGEX
   
-  #VALID_PASSWORD_REGEX = Regexp.new(/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,}\z/i)
-  #validates :encrypted_password, format: { with: VALID_PASSWORD_REGEX }
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+  validates_format_of :password, with: VALID_PASSWORD_REGEX
 
 
 
