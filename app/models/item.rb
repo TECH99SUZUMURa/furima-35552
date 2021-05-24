@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :estimated_shipping_date
+  has_on_attached :image
 
   with_options presence: true do
     validates :item_name
