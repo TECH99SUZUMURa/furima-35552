@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
-  extend ActiveHash: :Associations: :ActiveRecordExtentions
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :estimated_shipping_date
-  has_on_attached :image
+  has_one_attached :image
 
   with_options presence: true do
     validates :item_name
@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericalty: {other_than: 1} do
+  with_options numericality: {other_than: 1} do
     validates :category_id
     validates :condition_id
     validates :shipping_charge_id
