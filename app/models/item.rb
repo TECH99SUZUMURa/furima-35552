@@ -21,4 +21,6 @@ class Item < ApplicationRecord
     validates :estimated_shipping_date_id
   end
 
+  validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+
 end
