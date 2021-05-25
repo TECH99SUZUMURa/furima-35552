@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_charge
@@ -11,6 +12,11 @@ class Item < ApplicationRecord
     validates :item_name
     validates :text
     validates :price
+    validates :category_id
+    validates :condition_id
+    validates :shipping_charge_id
+    validates :prefecture_id
+    validates :estimated_shipping_date_id
   end
 
   with_options numericality: {other_than: 1} do
