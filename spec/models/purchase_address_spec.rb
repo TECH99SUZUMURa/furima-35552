@@ -19,6 +19,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address).to be_valid
       end
+
+      it 'phone_numは10桁の場合でも購入できる（FactoryBotは11桁で設定）' do
+        @purchase_address.phone_num = '0901234567'
+        @purchase_address.valid?
+        expect(@purchase_address).to be_valid
+      end
     end
 
     context '商品が購入できない場合' do
@@ -118,8 +124,8 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include('Phone num is invalid. Only 11 half-width numbers without hyphen(-)')
       end
 
-      it 'phone_numが10文字以下では購入できない' do
-        @purchase_address.phone_num = '1234567891'
+      it 'phone_numが9文字以下では購入できない' do
+        @purchase_address.phone_num = '123456789'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone num is invalid. Only 11 half-width numbers without hyphen(-)')
       end
