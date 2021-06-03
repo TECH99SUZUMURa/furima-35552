@@ -9,7 +9,7 @@ class PurchaseAddress
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :manucipality, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid' }
     validates :address, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー0-9\-]+\z/, message: 'is invalid' }
-    validates :phone_num, format: { with: /\A\d{11}\z/, message: 'is invalid. Only 11 half-width numbers without hyphen(-)' }
+    validates :phone_num, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Only 11 half-width numbers without hyphen(-)' }
     validates :token
   end
 
