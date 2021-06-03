@@ -6,7 +6,7 @@ RSpec.describe PurchaseAddress, type: :model do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id, item_id: item.id)
-      sleep 0.5
+      sleep 0.3
     end
 
     context '商品が購入できる場合' do
@@ -28,7 +28,7 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")
       end
 
-      it 'postal_codeが空では半角のハイフン（-）を含んだ正しい形式出ないと購入できない' do
+      it 'postal_codeが空では半角のハイフン（-）を含んだ正しい形式でないと購入できない' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
@@ -146,6 +146,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.item_id = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'tokenが空では購入できない' do
+        @purchase_address.token = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
