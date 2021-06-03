@@ -8,6 +8,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :estimated_shipping_date
   has_one_attached :image
 
+  has_one :purchase
+
   with_options presence: true do
     validates :item_name
     validates :text
