@@ -64,46 +64,10 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Manucipality can't be blank")
       end
 
-      it 'manucipalityに半角英数字が含まれていては購入できない' do
-        @purchase_address.manucipality = 'あ阿ア1a'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Manucipality is invalid')
-      end
-
-      it 'manucipalityに全角英数字が含まれていては購入できない' do
-        @purchase_address.manucipality = 'あ阿ア１Ａ'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Manucipality is invalid')
-      end
-
-      it 'manucipalityに記号が含まれていては購入できない' do
-        @purchase_address.manucipality = 'あ-阿@ア'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Manucipality is invalid')
-      end
-
       it 'addressが空では購入できない' do
         @purchase_address.address = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Address can't be blank")
-      end
-
-      it 'addressに半角英語が含まれていては購入できない' do
-        @purchase_address.address = 'a'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Address is invalid')
-      end
-
-      it 'addressに全角英語が含まれていては購入できない' do
-        @purchase_address.address = 'Ａ'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Address is invalid')
-      end
-
-      it 'addressに半角ハイフン(-)以外の記号が含まれていては購入できない' do
-        @purchase_address.address = '@'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Address is invalid')
       end
 
       it 'phone_numが空では購入できない' do
